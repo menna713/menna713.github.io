@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menna Elfuomy - Data Analyst & Programmer Portfolio</title> <!-- Fixed typo -->
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=League+Script&family=Oooh+Baby&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <style>
+        :root {
+            --color-text: #636B59;           
+            --color-text-secondary: #7C8B95; 
+            --color-accent: #90A5A9;         
+            --color-highlight-bg: #C4D5A7;   
+            --color-highlight-light: #CDE2B8; 
+            --color-bg: #FFFFFF;
+            --color-bg-alt: #FDFDFD;
+            --color-border: #E5E7EB; 
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg-alt);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-accent);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-secondary);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--color-text);
+            font-weight: 700;
+        }
+        
+        h2 {
+            @apply text-4xl font-bold text-center mb-16; /* Made header smaller */
+        }
+
+        p {
+            color: var(--color-text-secondary);
+            @apply text-lg leading-relaxed;
+        }
+
+        .main-header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+        }
+        .nav-link {
+            @apply text-lg font-medium transition-all duration-300;
+            color: var(--color-text-secondary);
+        }
+        .nav-link:hover {
+            color: var(--color-text);
+        }
+        .nav-logo {
+            font-family: 'Oooh Baby', cursive; 
+            font-weight: 400; 
+        }
+
+        .hero-name {
+            font-family: 'Oooh Baby', cursive;
+            font-weight: 400;
+            color: var(--color-accent);
+            display: inline-block; 
+            font-size: 1.25em; 
+            line-height: 0.8; 
+        }
+        .btn-hero-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px; 
+            background-color: var(--color-text);
+            color: var(--color-bg);
+            border: 2px solid var(--color-text);
+            transition: all 0.3s ease;
+            text-decoration: none; 
+            }
+        .btn-hero-primary:hover {
+            background-color: transparent;
+            color: var(--color-text);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            }
+        .btn-hero-primary i {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        .hero-photo-wrapper {
+            @apply rounded-3xl p-2 border-4; /* Fixed: was rounded-full */
+            border-color: var(--color-highlight-bg);
+            width: 300px;
+            height: 300px;
+        }
+        .hero-photo {
+            @apply rounded-3xl w-full h-full object-cover; 
+        }
+
+        .social-link {
+            @apply transition-all duration-300;
+            color: var(--color-text);
+        }
+        .social-link:hover {
+            color: var(--color-accent);
+        }
+
+        .skill-tag {
+            @apply inline-block text-sm font-medium;
+            padding: 0.5rem 1.25rem; 
+            background-color: var(--color-highlight-light);
+            color: var(--color-text);
+            border: 1px solid var(--color-highlight-bg);
+            transition: all 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 9999px; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
+        }
+        .skill-tag:hover {
+            transform: translateY(-1px);
+            background-color: var(--color-highlight-bg); 
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); 
+        }
+
+        .service-card {
+            @apply bg-white rounded-xl shadow-lg p-8 flex flex-col items-center; /* Fixed padding */
+            transition: all 0.3s ease;
+            padding: 20px 20px; /* Consistent padding */
+        }
+        .service-card:hover {
+            @apply shadow-2xl;
+            transform: translateY(-3px); 
+        }
+        .service-card-icon {
+            @apply w-12 h-12 mb-6; 
+            color: var(--color-accent);
+        }
+        .service-card h3 {
+            @apply text-2xl font-semibold mb-3;
+        }
+        .service-card p {
+            @apply text-base; 
+        }
+
+        .project-card {
+            @apply bg-white rounded-xl shadow-xl overflow-hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            @apply shadow-2xl;
+            transform: translateY(-8px);
+        }
+        .project-card-image {
+            @apply w-full h-56 object-cover;
+        }
+        .project-card-content {
+            @apply p-6;
+        }
+        .project-card-tag {
+            @apply inline-block rounded-full px-3 py-3 text-xs font-medium mr-2 mb-2;
+            background-color: var(--color-highlight-light);
+            color: var(--color-text);
+            /* border-radius: 20px;  Removed, redundant with rounded-full */
+        }
+        .project-card h3 {
+            @apply text-2xl font-semibold mb-3;
+        }
+        .project-card-links {
+            @apply mt-6 flex space-x-4;
+        }
+        .project-link {
+            @apply flex items-center text-lg font-medium transition-all duration-300;
+            color: var(--color-accent);
+        }
+        .project-link:hover {
+            color: var(--color-text);
+        }
+
+        footer {
+            border-top: 1px solid var(--color-border);
+            background-color: var(--color-bg-alt);
+        }
+        
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="main-header sticky top-0 z-50 w-full">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20"> 
+                <a href="#home" class="text-5xl nav-logo" style="color: var(--color-text);"> 
+                    Menna
+                </a>
+                
+                <div class="hidden sm:flex sm:space-x-8">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <section id="home" class="min-h-[calc(100vh-4rem)] flex items-center pt-16 pb-24">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-16 items-center w-full">
+                <div class="text-center sm:text-left">
+                    <h1 class="text-5xl md:text-7xl font-bold">
+                        Hi, I'm <span class="hero-name">Menna Elfuomy</span>
+                    </h1>
+                    <p class="mt-6 text-2xl" style="color: var(--color-text);">
+                        Data Scientist & Analyst
+                    </p>
+                    <p class="mt-4">
+                        My journey started with curiosity: I wanted to understand why things happen, not just what happens.
+                        Now, I turn that curiosity into insights by exploring data, coding solutions, and building stories from numbers.
+                    </p>
+                    
+                    <div class="mt-10 flex flex-col items-start space-y-4">
+                        <div class="flex space-x-6">
+                            <a href="https://github.com/menna713" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
+                                <i data-lucide="github" class="w-8 h-8"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/menna-elfuomy/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
+                                <i data-lucide="linkedin" class="w-8 h-8"></i>
+                            </a>
+                        </div>
+                        <a href="Menna Elfuomy resume.pdf" download="Menna_Elfuomy_resume.pdf" class="btn-hero-primary"> <!-- Fixed: Use placeholder for CV -->
+                            <i data-lucide="download" class="w-5 h-5 mr-2"></i>
+                            Download CV
+                        </a>
+                    </div>
+                </div>
+                <div class="flex justify-center sm:justify-end">
+                    <div class="hero-photo-wrapper">
+                        <img 
+                            src="https://i.postimg.cc/Zngn7WQx/Whats-App-Image-2025-10-24-at-23-22-20-1c42a7c8.jpg" 
+                            alt="A professional headshot of Menna Elfuomy"
+                            class="hero-photo"
+                            onerror="this.src='https://placehold.co/300x300/CDE2B8/636B59?text=Your+Photo'"
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 sm:py-28">
+            <div class="max-w-4xl mx-auto text-center mb-3"> <!-- Fixed: Removed text-center mb-3 -->
+                <h2>About Me</h2>
+                
+                <p id="bio-output" class="mb-16">
+                    I’ve always been fascinated by how a few numbers can explain so much about the world around us.
+                    That curiosity led me into data science — where I turn questions into insights and messy data into meaningful stories.
+                    I love experimenting with Python, Power BI, and Excel to uncover hidden patterns, and I’m constantly exploring new ways to make data more human.
+                    Along the way, I picked up side skills in Java, HTML, and CSS — they remind me that data isn’t just about analysis, but also about creativity and connection.
+                </p>
+                
+                <h3 class="text-3xl font-semibold text-center lg:text-left mt-16 mb-8">Education</h3>
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 mb-16 text-left">
+                    <h4 class="text-2xl font-semibold" style="color: var(--color-text);">B.Sc. in Computing and Data science</h4>
+                    <p class="text-xl mt-2" style="color: var(--color-text-secondary); font-weight: 500;">Faculty of Computers and Data science, Alexandria University — Alexandria, Egypt</p>
+                    <p class="text-lg mt-1" style="color: var(--color-accent); font-style: italic;">Graduation: 2028(expected)</p>
+                </div>
+                
+                <h3 class="text-3xl font-semibold text-center lg:text-left mt-16 mb-8">My Technical Skills</h3>
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Pandas & NumPy</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">Data Visualization (Power BI)</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">Excel</span>
+                        <span class="skill-tag">Statistics</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <h2 class="max-w-4xl mx-auto text-center mb-3">What I Offer</h2> 
+        <section id="services" class="pt-6 pb-10 sm:pt-8 sm:pb-12 bg-gray-50 rounded-xl">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-start">
+
+                <div class="service-card">
+                    <i data-lucide="bar-chart-horizontal" class="service-card-icon"></i>
+                    <div class="w-full text-left flex flex-col">
+                        <h3 class="mt-4">Data Analysis</h3>
+                        <p>
+                            Cleaning, transforming, and analyzing datasets to extract actionable insights and answer key business questions.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <i data-lucide="pie-chart" class="service-card-icon"></i>
+                    <div class="w-full text-left flex flex-col">
+                        <h3 class="mt-4">Data Visualization</h3>
+                        <p>
+                            Creating clear and compelling dashboards and reports using tools like Power BI to communicate findings.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <i data-lucide="code-2" class="service-card-icon"></i>
+                    <div class="w-full text-left flex flex-col">
+                        <h3 class="mt-4">Programming & Automation</h3>
+                        <p>
+                            Using Python to automate repetitive data tasks, build data pipelines, and develop custom analysis scripts.
+                        </p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <i data-lucide="users" class="service-card-icon"></i>
+                    <div class="w-full text-left flex flex-col">
+                        <h3 class="mt-4">Soft Skills</h3>
+                        <p>
+                        Clear communication, teamwork, adaptability, and analytical thinking — ensuring that data insights are not only accurate but also understood and actionable.
+                        </p> <!-- Fixed: was </d> -->
+                    </div>
+                </div>  
+            </div>
+        </section>
+
+        
+        <section id="projects" class="py-8 sm:py-12">            
+            <h2 class="max-w-4xl mx-auto text-center mb-5">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <div class="project-card">
+                    <img 
+                        src="https://i.postimg.cc/wvnYnD6N/Screenshot-2025-10-07-212502.png" 
+                        alt="Screenshot of Project 1"
+                        class="project-card-image"
+                        onerror="this.src='https://placehold.co/600x400/CDE2B8/636B59?text=Data+Project+1'"
+                    >
+                    <div class="project-card-content">
+                        <div>
+                            <span class="project-card-tag">MySQL</span>
+                            <span class="project-card-tag">Excel</span>
+                        </div>
+                        <h3 class="mt-4">Gift shop Analysis</h3>
+                        <p>
+                            This project analyzes customer behavior and retention patterns for an online gift shop.
+                            A Cohort Analysis was built to segment customers based on their first session or first purchase date, and to calculate monthly retention rates for each group.
+                            Key performance metrics (KPIs) included:
+                            Average days between visits
+                            New vs returning customer ratio
+                            Conversion rate and revenue by campaign and source
+                            The insights helped the Customer Experience team identify loyal customer segments, evaluate marketing campaign effectiveness, and improve overall user engagement and retention on the platform.
+                        </p> <!-- Fixed: was </D> -->
+                        <div class="project-card-links">
+                            <a href="https://www.notion.so/Tasks-Summary-27028a51e2398086a832f8b84ca20c63" target="_blank" rel="noopener noreferrer" class="project-link">
+                                <i data-lucide="file-text" class="w-6 h-6 mr-2"></i>
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-8 sm:py-12">
+            <div class="max-w-xl mx-auto text-center">
+                <h2>Get In Touch</h2>
+                <p class="mb-10">
+                    I'm currently open to new opportunities and collaborations. Feel free to reach out directly or fill out the form below!
+                </p>
+                
+                <div class="flex justify-center space-x-8 mb-12">
+                    <a href="mailto:mennaelfuomy@gmail.com" target="_blank" class="social-link" title="Email">
+                        <i data-lucide="mail" class="w-8 h-8"></i>
+                    </a>
+                    <a href="tel:+201002286337" target="_blank" class="social-link" title="Phone">
+                        <i data-lucide="phone" class="w-8 h-8"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/menna-elfuomy/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
+                        <i data-lucide="linkedin" class="w-8 h-8"></i>
+                    </a>
+                    <a href="https://github.com/menna713" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
+                        <i data-lucide="github" class="w-8 h-8"></i>
+                    </a>
+                </div>
+                
+                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-gray-100 text-left">
+                    <iframe 
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSdWl0MgmRZLSSU-6oGTsiwgM7rwKGrjFup9gD9J9VcUzYhgTg/viewform?usp=dialogembedded=true"  /* Fixed: "httpsD" typo */
+                        width="100%" 
+                        height="600" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0">
+                        Loading…
+                    </iframe>
+
+                </div> 
+                
+            </div>
+        </section>
+    
+    </main>
+
+    <footer class="py-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <p style="color: var(--color-text-secondary);">
+                &copy; <span id="current-year"></span>. All rights reserved.
+            </p>
+            <p class="text-sm mt-2" style="color: var(--color-text-secondary);">
+                Built with <span style="color: var(--color-accent);">&hearts;</span>, Menna Elfuomy
+            </p>
+        </div>
+    </footer>
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            } else {
+                console.error('Lucide library not loaded.');
+            }
+
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            document.querySelectorAll('a.nav-link[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = document.querySelector('header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 20; 
+            
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+
+        });
+        /* Removed extra }); */
+    </script>
+</body>
+</html>
+
